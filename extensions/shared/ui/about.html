@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alighieri · 关于我们</title>
+  <link rel="icon" href="/local-icon.svg">
+  <link rel="stylesheet" href="/local.css">
+  <style>
+    .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+    .about-card {
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .about-card h3 { margin: 0; font-size: 16px; font-weight: 800; }
+    .about-card .tag { margin-top: 4px; color: var(--primary-strong); font-size: 11.5px; font-weight: 700; }
+    .about-card p { margin: 10px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .about-card a.card-link { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 700; color: var(--primary-strong); text-decoration: none; }
+    .about-card a.card-link:hover { text-decoration: underline; }
+    .org-card { display: flex; gap: 18px; align-items: flex-start; }
+    .org-mark {
+      flex: none; width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center;
+      background: var(--primary-soft); color: var(--primary-strong); font-size: 22px; font-weight: 900;
+      border: 1px solid color-mix(in srgb, var(--primary) 32%, var(--border));
+    }
+    .section-title { margin: 30px 0 12px; font-size: 14px; font-weight: 800; letter-spacing: .02em; }
+    .slogan { margin-top: 3px; color: var(--primary-strong); font-size: 12px; font-weight: 700; }
+    @media (max-width: 620px) { .org-card { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <rect width="32" height="32" rx="8" fill="url(#g)"></rect>
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#71e0ac"></stop>
+              <stop offset="46%" stop-color="#4fd898"></stop>
+              <stop offset="100%" stop-color="#a3ebc9"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M8.2 24.9C9.9 15.4 15.9 8.4 24.3 5.2 22.6 12.6 16.7 19.6 8.2 24.9Z" fill="#fff" opacity=".97"></path>
+          <path d="M9.5 23.9 23.9 5.9" stroke="#a3ebc9" stroke-width=".8" opacity=".55"></path>
+          <path d="M8.2 24.9 10.8 22.4" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".9"></path>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>Alighieri</h1>
+        <p data-i18n="brandSub">关于我们</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn ghost" id="open-client" data-i18n="client">网络客户端</button>
+      <button class="btn ghost" id="open-shelf" data-i18n="shelf">本地书架</button>
+      <a class="btn primary" href="https://github.com/OpenMasons" target="_blank" rel="noopener" data-i18n="github">在 GitHub 上查看</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div>
+        <h2 data-i18n="title">关于我们</h2>
+        <p data-i18n="subtitle">Alighieri 由 OpenMasons 维护。一个开放、透明、共同构建的开源组织。</p>
+      </div>
+    </section>
+
+    <section class="about-card org-card">
+      <div class="org-mark">OM</div>
+      <div>
+        <h3>OpenMasons</h3>
+        <div class="slogan">Open | Transparent | co-Built</div>
+        <p data-i18n="orgBody">OpenMasons 是一个位于中国的开源组织。它维护 Alighieri，代码以 MIT 等宽松许可发布。</p>
+        <a class="card-link" href="https://github.com/OpenMasons" target="_blank" rel="noopener" data-i18n="githubShort">github.com/OpenMasons ↗</a>
+      </div>
+    </section>
+
+    <h3 class="section-title" data-i18n="alighieriTitle">Alighieri</h3>
+    <section class="about-card">
+      <div class="tag">MIT License · P2P · CRDT</div>
+      <p data-i18n="alighieriBody">一个没有中心服务器的 P2P 轻小说连载与阅读应用。作品、书架、评论与奖励以 CRDT 操作在节点间复制；桌面端与移动端共用同一套 Rust 核心。</p>
+      <p data-i18n="licenseBody">Alighieri 以 MIT 许可证发布，版权归 OpenMasons 所有。</p>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span data-i18n="footNote">本地服务只监听 127.0.0.1，不对外暴露。</span>
+    <span>Alighieri by OpenMasons</span>
+  </footer>
+
+  <script>
+    (() => {
+      const LANG = (navigator.language || "zh").toLowerCase().startsWith("zh") ? "zh" : "en";
+      const T = {
+        zh: {
+          brandSub: "关于我们",
+          client: "网络客户端",
+          shelf: "本地书架",
+          github: "在 GitHub 上查看",
+          githubShort: "github.com/OpenMasons ↗",
+          title: "关于我们",
+          subtitle: "Alighieri 由 OpenMasons 维护。一个开放、透明、共同构建的开源组织。",
+          orgBody: "OpenMasons 是一个位于中国的开源组织，口号是「Open | Transparent | co-Built」。它维护 Alighieri，代码以 MIT 等宽松许可发布。",
+          alighieriTitle: "Alighieri",
+          alighieriBody: "一个没有中心服务器的 P2P 轻小说连载与阅读应用。作品、书架、评论与奖励以 CRDT 操作在节点间复制；桌面端与移动端共用同一套 Rust 核心。",
+          licenseBody: "Alighieri 以 MIT 许可证发布，版权归 OpenMasons 所有。",
+          footNote: "本地服务只监听 127.0.0.1，不对外暴露。",
+        },
+        en: {
+          brandSub: "About us",
+          client: "Network client",
+          shelf: "Local shelf",
+          github: "View on GitHub",
+          githubShort: "github.com/OpenMasons ↗",
+          title: "About us",
+          subtitle: "Alighieri is maintained by OpenMasons — an open, transparent, co-built organization.",
+          orgBody: "OpenMasons is an open-source organization based in China. Its motto is “Open | Transparent | co-Built”. It maintains Alighieri, released under permissive licenses such as MIT.",
+          alighieriTitle: "Alighieri",
+          alighieriBody: "A P2P light-novel app with no central server. Works, shelves, reviews and rewards replicate as CRDT operations; desktop and mobile share one Rust core.",
+          licenseBody: "Alighieri is released under the MIT License. Copyright belongs to OpenMasons.",
+          footNote: "The local service only listens on 127.0.0.1 and is never exposed.",
+        },
+      };
+      const t = (key) => (T[LANG] && T[LANG][key]) || T.zh[key] || key;
+      document.title = `Alighieri · ${t("title")}`;
+      for (const node of document.querySelectorAll("[data-i18n]")) {
+        node.textContent = t(node.dataset.i18n);
+      }
+      document.getElementById("open-client").addEventListener("click", () => { location.href = "/"; });
+      document.getElementById("open-shelf").addEventListener("click", () => { location.href = "/local"; });
+    })();
+  </script>
+</body>
+</html>

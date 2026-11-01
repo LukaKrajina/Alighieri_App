@@ -1,0 +1,36 @@
+/* Alighieri 视图：把内容区整个交给 iframe，内边距一分不留 */
+.workspace-leaf-content[data-type="alighieri-client-view"] .view-content,
+.workspace-leaf-content[data-type="alighieri-local-view"] .view-content {
+  padding: 0;
+  overflow: hidden;
+}
+
+.alighieri-view {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--background-primary);
+}
+
+.alighieri-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #f4f8f5;
+}
+
+.alighieri-error {
+  padding: 24px;
+  color: var(--text-error);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.alighieri-settings-note {
+  margin-top: 18px;
+  color: var(--text-muted);
+  font-size: 12px;
+  word-break: break-all;
+}

@@ -1,0 +1,24 @@
+# flutter_rust_bridge 配置
+# ------------------------
+# Rust 侧门面在 `rust/src/api.rs`（crate::api），生成物写回 `rust/src/frb_generated.rs`
+# 与 `lib/src/rust/`。改完 api.rs 之后跑一次：
+#
+#   flutter_rust_bridge_codegen generate
+#
+rust_input: crate::api
+rust_root: rust
+rust_output: rust/src/frb_generated.rs
+dart_output: lib/src/rust
+dart_entrypoint_class_name: Alighieri
+dart_preamble: |
+  // Alighieri —— 由 flutter_rust_bridge 生成，请勿手工编辑。
+  // 改 rust/src/api.rs 后重新生成。
+web: false
+deps_check: false
+build_runner: false
+# 原生端（Linux / Windows / Android）上把 64 位整数映射成 Dart 的 int 而不是
+# BigInt：字数、时间戳这些值在界面上要做算术，BigInt 会让每处都多一层转换。
+type_64bit_int: true
+# 不去镜像 Rust 里的 `const`：分类表、预设色这些是纯数据表，
+# 镜像成 Dart 的顶层常量只会在生成物里多出一堆互相引用的胶水。
+parse_const: false

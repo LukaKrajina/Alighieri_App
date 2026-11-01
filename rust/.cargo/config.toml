@@ -1,0 +1,20 @@
+# Android 交叉编译：链接器来自 NDK 的 clang 包装脚本。
+# 这些脚本在 $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/<host>/bin 下。
+# `scripts/android-env.sh`（以及 Android Gradle 任务）会把该目录放进 PATH。
+#
+# 24 与 Flutter 的 minSdkVersion 一致；提高 minSdk 时同步修改这里。
+
+[target.aarch64-linux-android]
+linker = "aarch64-linux-android24-clang"
+
+[target.armv7-linux-androideabi]
+linker = "armv7a-linux-androideabi24-clang"
+
+[target.x86_64-linux-android]
+linker = "x86_64-linux-android24-clang"
+
+# Windows GNU 交叉验证（MinGW）。Flutter 的 Windows 桌面壳不能
+# 在 Linux 上交叉构建；这里只编 Rust DLL。
+# 需要先 `source scripts/windows-env.sh` 把 MinGW 放进 PATH。
+[target.x86_64-pc-windows-gnu]
+linker = "x86_64-w64-mingw32-gcc"

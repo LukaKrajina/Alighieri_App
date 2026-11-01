@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alighieri · 本地书架</title>
+  <link rel="icon" href="/local-icon.svg">
+  <link rel="stylesheet" href="/local.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28">
+          <rect width="32" height="32" rx="8" fill="url(#g)"></rect>
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#71e0ac"></stop>
+              <stop offset="46%" stop-color="#4fd898"></stop>
+              <stop offset="100%" stop-color="#a3ebc9"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M8.2 24.9C9.9 15.4 15.9 8.4 24.3 5.2 22.6 12.6 16.7 19.6 8.2 24.9Z" fill="#fff" opacity=".97"></path>
+          <path d="M9.5 23.9 23.9 5.9" stroke="#a3ebc9" stroke-width=".8" opacity=".55"></path>
+          <path d="M8.2 24.9 10.8 22.4" stroke="#fff" stroke-width="1.3" stroke-linecap="round" opacity=".9"></path>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>Alighieri</h1>
+        <p id="brand-sub">本地书架 · 只保存在这台设备上</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="btn ghost" id="open-client" title="打开 Alighieri 网络客户端">网络客户端</button>
+      <button class="btn primary" id="import-btn">
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span id="import-label">导入书籍</span>
+      </button>
+      <input id="file-input" type="file" accept=".txt,.epub,.md,.markdown,.mdown,.html,.htm,.xhtml" multiple hidden>
+    </div>
+  </header>
+
+  <main id="library-view" class="page">
+    <section class="hero">
+      <div>
+        <h2 id="hero-title">你的本地书架</h2>
+        <p id="hero-body">导入 TXT、EPUB、Markdown 或 HTML。解析、分章和阅读进度都在这台设备上完成，不产生任何网络操作。</p>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <div class="toolbar">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="m16 16 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+        <input id="filter" type="search" placeholder="搜索书名 / 作者">
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip active" data-format="">全部</button>
+        <button class="chip" data-format="epub">EPUB</button>
+        <button class="chip" data-format="txt">TXT</button>
+        <button class="chip" data-format="md">Markdown</button>
+        <button class="chip" data-format="html">HTML</button>
+      </div>
+    </div>
+
+    <div id="notice" class="notice" hidden></div>
+    <section id="book-list" class="book-list" aria-live="polite"></section>
+  </main>
+
+  <main id="reader-view" class="reader" hidden>
+    <div class="reader-bar">
+      <button class="btn ghost" id="reader-back" title="返回书架">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="m9 5-7 7 7 7M3 12h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        书架
+      </button>
+      <div class="reader-title" id="reader-title"></div>
+      <div class="reader-tools">
+        <button class="btn icon" id="toc-btn" title="目录">目录</button>
+        <button class="btn icon" id="font-down" title="缩小字号">A−</button>
+        <button class="btn icon" id="font-up" title="放大字号">A+</button>
+        <button class="btn icon" id="theme-btn" title="切换明暗">◐</button>
+        <a class="btn icon" id="export-btn" title="导出本书" download>导出</a>
+      </div>
+    </div>
+    <div class="reader-progress"><span id="chapter-label"></span><span id="read-percent"></span></div>
+    <article id="reader-body" class="reader-body"></article>
+    <div class="reader-nav">
+      <button class="btn ghost" id="prev-chapter">上一章</button>
+      <span id="chapter-count"></span>
+      <button class="btn ghost" id="next-chapter">下一章</button>
+    </div>
+  </main>
+
+  <aside id="toc-panel" class="side-panel" hidden>
+    <div class="side-head">
+      <h3>目录</h3>
+      <button class="btn icon" id="toc-close">×</button>
+    </div>
+    <div id="toc-list" class="toc-list"></div>
+  </aside>
+  <div id="scrim" class="scrim" hidden></div>
+
+  <footer class="foot">
+    <span>本地书不会上传，也不会占用 Alighieri 的网络书架。</span>
+    <span id="storage-note"></span>
+    <span>Alighieri by OpenMasons</span>
+  </footer>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/local.js"></script>
+</body>
+</html>

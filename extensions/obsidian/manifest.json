@@ -1,0 +1,9 @@
+{
+  "id": "alighieri",
+  "name": "Alighieri",
+  "version": "0.1.2",
+  "minAppVersion": "1.4.0",
+  "description": "在 Obsidian 里读 Alighieri：完整网络客户端 + 本地 TXT / EPUB / Markdown 书架。",
+  "author": "OpenMasons",
+  "isDesktopOnly": true
+}

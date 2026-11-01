@@ -1,0 +1,131 @@
+{
+  "name": "alighieri",
+  "displayName": "Alighieri",
+  "description": "在 VS Code 里读 Alighieri：完整网络客户端 + 本地 TXT / EPUB / Markdown 书架。",
+  "version": "0.1.2",
+  "publisher": "OpenMasons",
+  "author": "OpenMasons",
+  "license": "MIT",
+  "icon": "media/icon-192.png",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "novel",
+    "reader",
+    "epub",
+    "markdown",
+    "p2p",
+    "alighieri"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "alighieri.openClient",
+        "title": "Alighieri: 打开网络客户端",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.openLocalLibrary",
+        "title": "Alighieri: 打开本地书架",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.importBook",
+        "title": "Alighieri: 导入本地书籍",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.importCurrentFile",
+        "title": "Alighieri: 导入当前文件到本地书架",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.openInBrowser",
+        "title": "Alighieri: 在浏览器中打开",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.restartServer",
+        "title": "Alighieri: 重启本地服务",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.openLocalBook",
+        "title": "打开本地书籍",
+        "category": "Alighieri"
+      },
+      {
+        "command": "alighieri.deleteLocalBook",
+        "title": "从本地书架删除",
+        "category": "Alighieri"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "alighieri",
+          "title": "Alighieri",
+          "icon": "media/icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "alighieri": [
+        {
+          "id": "alighieri.localBooks",
+          "name": "本地书架"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "alighieri.localBooks",
+        "contents": "还没有本地书籍。\n[导入 TXT / EPUB / Markdown](command:alighieri.importBook)\n[打开完整本地书架](command:alighieri.openLocalLibrary)"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "alighieri.deleteLocalBook",
+          "when": "view == alighieri.localBooks",
+          "group": "inline"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "alighieri.openLocalBook",
+          "when": "false"
+        },
+        {
+          "command": "alighieri.deleteLocalBook",
+          "when": "false"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Alighieri",
+      "properties": {
+        "alighieri.port": {
+          "type": "number",
+          "default": 47831,
+          "minimum": 1024,
+          "maximum": 65535,
+          "description": "本地客户端与本地书架的服务端口。端口被占用时会自动向后寻找，但固定端口能让浏览器里的身份数据保持稳定。"
+        },
+        "alighieri.autoStartServer": {
+          "type": "boolean",
+          "default": true,
+          "description": "启动 VS Code 时自动运行 Alighieri 本地服务。关闭后，第一次打开面板时才会启动。"
+        }
+      }
+    }
+  }
+}

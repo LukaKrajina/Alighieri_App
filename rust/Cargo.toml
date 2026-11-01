@@ -1,0 +1,33 @@
+[package]
+name = "alighieri_core"
+version = "0.1.0"
+edition = "2021"
+description = "Alighieri — 去中心化轻小说连载与阅读的核心域层（CRDT / 奖励币 / 身份 / 目录）"
+license = "MIT"
+authors = ["OpenMasons"]
+
+[lib]
+# flutter_rust_bridge 需要的产物形态：
+#   staticlib / cdylib —— 给 Flutter 的 FFI 用
+#   rlib               —— 给 Rust 侧的集成测试用
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+flutter_rust_bridge = "=2.13.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand = "0.8"
+hex = "0.4"
+bs58 = "0.5"
+pbkdf2 = "0.12"
+aes-gcm = "0.10"
+libp2p = { version = "0.57.1", features = ["tokio", "tcp", "noise", "yamux", "gossipsub", "kad", "identify", "ping", "relay", "dcutr", "autonat", "dns", "websocket", "ed25519", "rsa", "macros", "serde", "request-response", "json"] }
+tokio = { version = "1.54", features = ["rt-multi-thread", "sync", "time", "net", "macros"] }
+futures = "0.3"
+ureq = { version = "3", features = ["rustls"] }
+
+[profile.release]
+lto = true
+opt-level = "s"
